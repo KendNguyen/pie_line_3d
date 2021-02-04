@@ -1,4 +1,4 @@
-// @flow 
+// @flow
 import * as React from 'react';
 
 type RefType<T> = React.MutableRefObject<T> | ((state: T) => void)
@@ -9,6 +9,7 @@ function call<T>(ref: RefType<T> | undefined, value: T | null) {
 }
 
 
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function useEffectfulState<T>(fn: () => T, deps: React.DependencyList = [], cb?: RefType<T>) {
     const [state, set] = React.useState<T>()
     React.useLayoutEffect(() => {
@@ -18,4 +19,4 @@ export default function useEffectfulState<T>(fn: () => T, deps: React.Dependency
         return () => call(cb, null)
     }, deps)
     return state
-};
+}

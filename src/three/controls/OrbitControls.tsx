@@ -1,7 +1,7 @@
-// @flow 
+// @flow
 import * as React from 'react';
-import {forwardRef, useEffect} from "react";
-import {ReactThreeFiber, useThree, useFrame, Overwrite} from 'react-three-fiber'
+import {forwardRef, useEffect} from 'react';
+import {Overwrite, ReactThreeFiber, useFrame, useThree} from 'react-three-fiber'
 import {OrbitControls as OrbitControlsImpl} from 'three/examples/jsm/controls/OrbitControls'
 import useEffectfulState from "../useEffectfulState";
 
@@ -9,6 +9,7 @@ export type OrbitControls = Overwrite<ReactThreeFiber.Object3DNode<OrbitControls
     { target?: ReactThreeFiber.Vector3 }>
 
 
+// eslint-disable-next-line react/display-name
 export const OrbitControls = forwardRef((props: OrbitControls = {enableDamping: true}, ref) => {
     const {camera, gl, invalidate} = useThree()
     const controls = useEffectfulState<OrbitControlsImpl>(
@@ -24,9 +25,5 @@ export const OrbitControls = forwardRef((props: OrbitControls = {enableDamping: 
         return () => controls?.removeEventListener('change', invalidate)
     }, [controls, invalidate])
 
-    return (
-        <div>
-
-        </div>
-    );
+    return controls ? <primitive dispose={undefined} object={controls} enableDamping {...props} /> : null
 })

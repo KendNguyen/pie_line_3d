@@ -26,6 +26,7 @@ type Props = JSX.IntrinsicElements['group'] & {
 }
 
 
+// eslint-disable-next-line react/display-name
 export const TransformControls = React.forwardRef(
     ({children, ...props}: { children: React.ReactElement<Object3D> } & TransformControls, ref) => {
         const transformOnlyPropNames = [
