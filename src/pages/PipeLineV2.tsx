@@ -119,6 +119,6 @@ export const PipeLine = (props: Props) => {
         </perspectiveCamera>
         <primitive object={mesh}/>
         <OrbitControls ref={orbitControls} zoomSpeed={5}/>
-        <gridHelper args={[20000, 1000]} ref={gridHelper}/>
+        <gridHelper args={[200000, 1000]} ref={gridHelper}/>
     </>
 };
